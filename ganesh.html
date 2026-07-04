@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Birthday Ganuuuu 🎂</title>
+
+<!-- Bootstrap -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<style>
+body{
+    min-height:100vh;
+    background-image:url("../ganuu.jpeg"); /* Change path if needed */
+    background-position:center;
+    background-repeat:no-repeat;
+    background-size:cover;
+
+    display:flex;
+    justify-content:flex-end;
+    align-items:center;
+
+    padding-right:60px;
+    overflow:hidden;
+    font-family:'Segoe UI',sans-serif;
+}
+
+/* Card */
+.card{
+    background:rgba(255,255,255,0.15);
+    backdrop-filter:blur(15px);
+    border-radius:25px;
+    padding:40px;
+    text-align:center;
+    max-width:420px;
+    box-shadow:0 20px 60px rgba(0,0,0,.5);
+    transition:.4s;
+}
+
+.card:hover{
+    transform:translateY(-10px) scale(1.03);
+}
+
+/* Buttons */
+button{
+    border-radius:30px !important;
+    padding:10px 25px !important;
+    margin:10px;
+    font-weight:bold;
+}
+
+/* Hearts */
+.heart{
+    position:absolute;
+    font-size:25px;
+    animation:floatUp 6s linear forwards;
+    opacity:.9;
+}
+
+@keyframes floatUp{
+    0%{
+        transform:translateY(0) scale(1);
+        opacity:1;
+    }
+    100%{
+        transform:translateY(-100vh) scale(1.5);
+        opacity:0;
+    }
+}
+
+/* Mobile */
+@media(max-width:768px){
+    body{
+        justify-content:center;
+        padding-right:0;
+    }
+}
+</style>
+
+</head>
+<body>
+
+<!-- Music -->
+<audio id="bgMusic" loop>
+    <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-3.mp3" type="audio/mpeg">
+</audio>
+
+<div class="card">
+    <h1>💖 Ganuuuu 💖</h1>
+
+    <p class="fs-4 mt-3">
+        Do you want to see your special birthday wish? 🥳
+    </p>
+
+    <button class="btn btn-success" onclick="yes()">YES 💖</button>
+
+    <button class="btn btn-danger" id="noBtn" onmouseover="noMove()">
+        NO 🙈
+    </button>
+
+    <h4 id="wish" class="mt-4 text-white"></h4>
+</div>
+
+<script>
+
+// YES Button
+function yes(){
+
+    // Play Music
+    const music=document.getElementById("bgMusic");
+    music.play().catch(err=>{
+        console.log("Music couldn't play:",err);
+    });
+
+    // Show Wish
+    document.getElementById("wish").innerHTML=
+    `🥰 Happy Birthday! 🎂🎉<br><br>
+    I hope your birthday is as beautiful and full of love as you are. ❤️<br><br>
+    You deserve only the best, and I wish that for you every single day.<br><br>
+    Best wishes, Ganuuuuu! ❤️🥰`;
+
+    hearts();
+}
+
+// NO Button
+function noMove(){
+
+    const btn=document.getElementById("noBtn");
+
+    btn.style.position="absolute";
+    btn.style.left=Math.random()*80+"%";
+    btn.style.top=Math.random()*80+"%";
+}
+
+// Hearts Animation
+function hearts(){
+
+    for(let i=0;i<30;i++){
+
+        const heart=document.createElement("div");
+
+        heart.className="heart";
+        heart.innerHTML="💖";
+
+        heart.style.left=Math.random()*100+"vw";
+        heart.style.bottom="0px";
+        heart.style.animationDuration=(Math.random()*3+3)+"s";
+
+        document.body.appendChild(heart);
+
+        setTimeout(()=>{
+            heart.remove();
+        },6000);
+    }
+}
+
+</script>
+
+</body>
+</html>
